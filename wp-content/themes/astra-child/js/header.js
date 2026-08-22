@@ -736,3 +736,48 @@ async function initHoaXuanThree() {
         '✅ HX THREE ACTIVE'
     );
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  /* ── Smooth Scroll for Anchor Links (Landing Page) ── */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      if (this.getAttribute('href') === '#') return;
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        e.preventDefault();
+        
+        // Close menus if open
+        const overlay = document.getElementById('lumy-overlay');
+        const hbgD = document.getElementById('lumy-hbg-desktop');
+        if (overlay && overlay.classList.contains('on')) {
+            overlay.classList.remove('on');
+            overlay.setAttribute('aria-hidden', 'true');
+            if(hbgD) {
+                hbgD.classList.remove('open');
+                hbgD.setAttribute('aria-expanded', 'false');
+            }
+            document.body.classList.remove('lumy-menu-open');
+        }
+
+        const mobOv = document.getElementById('lumy-mob-overlay');
+        const hbgM = document.getElementById('lumy-hbg-mobile');
+        if (mobOv && mobOv.classList.contains('on')) {
+            mobOv.classList.remove('on');
+            mobOv.setAttribute('aria-hidden', 'true');
+            if(hbgM) {
+                hbgM.classList.remove('open');
+                hbgM.setAttribute('aria-expanded', 'false');
+            }
+            document.body.classList.remove('lumy-menu-open');
+        }
+        
+        window.scrollTo({
+          top: targetElement.offsetTop - window.innerHeight * 0.1, // Offset for sticky header
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});

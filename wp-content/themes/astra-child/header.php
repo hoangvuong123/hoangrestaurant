@@ -33,7 +33,7 @@
       'theme_location' => 'primary',
       'menu_class'     => 'lumy-nav-primary',
       'container'      => false,
-      'depth'          => 1,
+      'depth'          => 0,
     ]); ?>
   </nav>
 
@@ -85,7 +85,7 @@
       'menu_class'     => 'lumy-ov-nav',
       'container'      => 'nav',
       'container_attr' => ['aria-label' => 'Overlay Navigation'],
-      'depth'          => 1,
+      'depth'          => 0,
       'link_before'    => '',
       'link_after'     => '',
     ]); ?>
