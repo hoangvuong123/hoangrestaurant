@@ -265,3 +265,44 @@ add_action('init', function() {
     add_theme_support('post-thumbnails');
     add_post_type_support('menu', 'thumbnail');
 }, 99);
+
+/* =======================================
+   Custom Landing Page Menu & Content
+======================================= */
+function get_hoang_landing_page_menu( $ul_class = 'lumy-nav-primary' ) {
+    ob_start();
+    ?>
+    <ul class="<?php echo esc_attr($ul_class); ?> lumy-landing-nav">
+      <li><a href="#about-us">Über uns</a></li>
+      <li><a href="#menu-allergen-note-title">Allergene & Zusatzstoffe</a></li>
+      <li class="menu-item-has-children"><a href="#speisekarte">Speisekarte</a>
+        <ul class="sub-menu">
+          <li><a href="#empfehlung_vom_haus">Empfehlung vom Haus</a></li>
+          <li><a href="#vorspeisen">Vorspeisen</a></li>
+          <li><a href="#vegetarische_gerichte">Vegetarische Gerichte</a></li>
+          <li><a href="#hauptspeisen">Hauptspeisen</a></li>
+          <li><a href="#deutsche_kuche">Deutsche Küche</a></li>
+          <li><a href="#bowl">Bowl</a></li>
+          <li><a href="#kinder_menu">Kinder Menü</a></li>
+          <li><a href="#extras">Extras</a></li>
+          <li><a href="#dessert">Dessert</a></li>
+          <li><a href="#sushi">Sushi</a></li>
+          <li><a href="#hauptgerichte">Hauptgerichte</a></li>
+          <li><a href="#getrankekarte">Getränkekarte</a></li>
+        </ul>
+      </li>
+      <li><a href="#empfohlene-gerichte">Empfohlene Gerichte</a></li>
+      <li><a href="#kuechenchef">Küchenchef</a></li>
+    </ul>
+    <?php
+    return ob_get_clean();
+}
+
+add_filter( 'the_content', function( $content ) {
+    // Inject the restaurant menu out to the main page automatically
+    if ( is_front_page() && in_the_loop() && is_main_query() ) {
+        $menu_shortcode = do_shortcode('[restaurant_menu]');
+        return $content . $menu_shortcode;
+    }
+    return $content;
+});

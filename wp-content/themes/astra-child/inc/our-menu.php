@@ -6,13 +6,18 @@ class Restaurant_Menu_Shortcode {
     private static $instance = null;
 
     private $taxonomies = [
-        [ 'slug' => 'empfehlung_vom_haus',   'label_de' => 'Empfehlung Vom Haus',   'label_en' => 'House Special'  ],
-        [ 'slug' => 'vorspeisen',   'label_de' => 'Vorspeisen',   'label_en' => 'Appetizers'  ],
-        [ 'slug' => 'hauptspeisen', 'label_de' => 'Hauptspeisen', 'label_en' => 'Main Courses' ],
-        [ 'slug' => 'sushi',        'label_de' => 'Sushi',        'label_en' => 'Sushi'        ],
-        [ 'slug' => 'dessert',      'label_de' => 'Dessert',      'label_en' => 'Desserts'     ],
-        [ 'slug' => 'getranke',     'label_de' => 'Getränke',     'label_en' => 'Beverages'    ],
-        [ 'slug' => 'andere',       'label_de' => 'Andere',       'label_en' => 'Others'       ],
+        [ 'slug' => 'empfehlung_vom_haus',   'label_de' => 'Empfehlung vom Haus',   'label_en' => 'House Special' ],
+        [ 'slug' => 'vorspeisen',            'label_de' => 'Vorspeisen',            'label_en' => 'Appetizers' ],
+        [ 'slug' => 'vegetarische_gerichte', 'label_de' => 'Vegetarische Gerichte', 'label_en' => 'Vegetarian Dishes' ],
+        [ 'slug' => 'hauptspeisen',          'label_de' => 'Hauptspeisen',          'label_en' => 'Main Courses' ],
+        [ 'slug' => 'deutsche_kuche',        'label_de' => 'Deutsche Küche',        'label_en' => 'German Cuisine' ],
+        [ 'slug' => 'bowl',                 'label_de' => 'Bowl',                  'label_en' => 'Bowl' ],
+        [ 'slug' => 'kinder_menu',          'label_de' => 'Kinder Menü',           'label_en' => 'Kids Menu' ],
+        [ 'slug' => 'extras',               'label_de' => 'Extras',                'label_en' => 'Extras' ],
+        [ 'slug' => 'dessert',              'label_de' => 'Dessert',               'label_en' => 'Desserts' ],
+        [ 'slug' => 'sushi',                'label_de' => 'Sushi',                 'label_en' => 'Sushi' ],
+        [ 'slug' => 'hauptgerichte',        'label_de' => 'Hauptgerichte',         'label_en' => 'Main Dishes' ],
+        [ 'slug' => 'getrankekarte',        'label_de' => 'Getränkekarte',         'label_en' => 'Drinks Menu' ]
     ];
 
     private $post_type      = 'menu';

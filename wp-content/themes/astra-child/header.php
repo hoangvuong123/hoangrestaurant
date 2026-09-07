@@ -29,12 +29,16 @@
 
   <!-- Primary Nav -->
   <nav aria-label="Primary Navigation">
-    <?php wp_nav_menu([
-      'theme_location' => 'primary',
-      'menu_class'     => 'lumy-nav-primary',
-      'container'      => false,
-      'depth'          => 0,
-    ]); ?>
+    <?php if ( is_front_page() && function_exists('get_hoang_landing_page_menu') ) : ?>
+        <?php echo get_hoang_landing_page_menu('lumy-nav-primary'); ?>
+    <?php else : ?>
+        <?php wp_nav_menu([
+          'theme_location' => 'primary',
+          'menu_class'     => 'lumy-nav-primary',
+          'container'      => false,
+          'depth'          => 0,
+        ]); ?>
+    <?php endif; ?>
   </nav>
 
   <!-- Right: Lang + Order + Hamburger -->
@@ -80,15 +84,21 @@
       <span class="lumy-ov-close-lbl">MENU</span>
     </button>
 
-    <?php wp_nav_menu([
-      'theme_location' => 'primary',
-      'menu_class'     => 'lumy-ov-nav',
-      'container'      => 'nav',
-      'container_attr' => ['aria-label' => 'Overlay Navigation'],
-      'depth'          => 0,
-      'link_before'    => '',
-      'link_after'     => '',
-    ]); ?>
+    <?php if ( is_front_page() && function_exists('get_hoang_landing_page_menu') ) : ?>
+      <nav aria-label="Overlay Navigation">
+          <?php echo get_hoang_landing_page_menu('lumy-ov-nav'); ?>
+      </nav>
+    <?php else : ?>
+        <?php wp_nav_menu([
+          'theme_location' => 'primary',
+          'menu_class'     => 'lumy-ov-nav',
+          'container'      => 'nav',
+          'container_attr' => ['aria-label' => 'Overlay Navigation'],
+          'depth'          => 0,
+          'link_before'    => '',
+          'link_after'     => '',
+        ]); ?>
+    <?php endif; ?>
 
     <div class="lumy-lang">
         <?php echo do_shortcode('[language-switcher]'); ?>
@@ -143,12 +153,18 @@
     <span class="lumy-mob-close-lbl">MENU</span>
   </button>
 
-  <?php wp_nav_menu([
-    'theme_location' => 'primary',
-    'menu_class'     => 'lumy-mob-nav',
-    'container'      => 'nav',
-    'depth'          => 1,
-  ]); ?>
+  <?php if ( is_front_page() && function_exists('get_hoang_landing_page_menu') ) : ?>
+      <nav>
+          <?php echo get_hoang_landing_page_menu('lumy-mob-nav'); ?>
+      </nav>
+  <?php else : ?>
+      <?php wp_nav_menu([
+        'theme_location' => 'primary',
+        'menu_class'     => 'lumy-mob-nav',
+        'container'      => 'nav',
+        'depth'          => 1,
+      ]); ?>
+  <?php endif; ?>
 
   <div class="lumy-mob-actions">
     <a href="tel:+4917621927505" class="lumy-mob-action-btn">
