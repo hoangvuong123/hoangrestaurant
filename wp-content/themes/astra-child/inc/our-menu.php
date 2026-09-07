@@ -590,7 +590,6 @@ class Restaurant_Menu_Shortcode {
                                 <img class="menu-section__icon" style="width:36px; height:auto; opacity: 0.65;" src="https://chihouse.de/wp-content/uploads/2026/06/logo-menu.png" alt="">
                             </div>
                         </div>
-                        <div class="menu-section__line" style="background: #e63946; width: 180px; height: 3px; border-radius: 9px; margin: 18px auto 28px; opacity: 1;"></div>
                     </div>
 
                     <p class="menu-allergen-intro">Entdecken Sie alle wichtigen Allergene und Zusatzstoffe in den Gerichten unseres Restaurants. Ihre Gesundheit ist uns wichtig – erfahren Sie mehr über Gluten, Laktose, Farbstoffe &amp; Co.</p>
