@@ -503,32 +503,76 @@
    ALLERGEN NOTE
    ================================================ */
 .menu-allergen-note {
-  width: min(100%, 760px);
-  padding: 30px 0 8px;
+  width: min(100%, 960px);
+  padding: 40px 0 20px;
   align-self: center;
   margin-inline: auto;
   border: 0;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 1rem;
   font-style: normal;
-  line-height: 1.35;
+  line-height: 1.45;
 }
 
-.menu-allergen-note__title {
-  margin: 0 0 18px;
-  color: rgba(255, 255, 255, 0.86);
+.menu-allergen-intro {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 0 15px;
+}
+
+.menu-allergen-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 600px) {
+  .menu-allergen-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.menu-allergen-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-allergen-col-header {
+  background: #C9C518;
+  color: #000;
+  padding: 10px 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  margin-bottom: 12px;
   font-family: 'Jost', sans-serif;
   font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: 0;
 }
 
-.menu-allergen-note p {
-  margin: 0 0 18px;
+.menu-allergen-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.menu-allergen-note__codes {
-  margin-bottom: 26px;
+.menu-allergen-list li {
+  background: rgba(22, 105, 105, 0.52);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.menu-allergen-footer {
+  text-align: left;
+}
+
+.menu-allergen-footer p {
+  margin: 0 0 6px 0;
+  font-size: 0.95rem;
 }
 
 /* ================================================

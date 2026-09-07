@@ -696,35 +696,54 @@ class Restaurant_Menu_Shortcode {
 
                 <?php endforeach; ?>
 
-                <aside class="menu-allergen-note" aria-labelledby="menu-allergen-note-title">
-                    <h3 class="menu-allergen-note__title" id="menu-allergen-note-title">
-                        Allergene &amp; Zusatzstoffe:
-                    </h3>
+                <aside class="menu-allergen-note" id="menu-allergen-note-title" aria-labelledby="menu-allergen-note-title">
+                    <p class="menu-allergen-intro">Entdecken Sie alle wichtigen Allergene und Zusatzstoffe in den Gerichten unseres Restaurants. Ihre Gesundheit ist uns wichtig – erfahren Sie mehr über Gluten, Laktose, Farbstoffe &amp; Co.</p>
 
-                    <div class="menu-allergen-note__codes">
-                        <p>
-                            A - Hühnereier<br>
-                            B1 - Erdnussbutter, B2 - Erdnuss<br>
-                            C - Fisch, C1 - Fischsauce, C2 - Kaviar<br>
-                            D1 - Weizen, D2 - Kartoffeln, D3 - Paniermehl<br>
-                            E - Garnelen, E2 - Krebspulver<br>
-                            G1 - Frischkäse, G2 - Butter, G3 - Sahne, G4 - Vollmilch, G5 - Kokosnussmilch<br>
-                            H - Nudeln<br>
-                            N1 - Ketchup, N2 - Mayo, N3 - Feinkostsalate, N4 - Senf<br>
-                            K1 - Sesam (schwarzer und weißer Sesam), K2 - Sesamöl<br>
-                            M1 - Soja, M2 - Sojasauce
-                        </p>
-
-                        <p>
-                            1 - koffeinhaltig; 2 - mit Antioxidationsmitteln;<br>
-                            3 - mit Farbstoffen; 4 - Säurungsmittel; 5 - Konservierungsstoffe;<br>
-                            6 - mit Süßstoffen; 7 - chininhaltig; 8 - mit Phosphat; 9 - Stabilisatoren<br>
-                            10 - Milch
-                        </p>
+                    <div class="menu-allergen-grid">
+                        <div class="menu-allergen-col">
+                            <div class="menu-allergen-col-header">Allergene</div>
+                            <ul class="menu-allergen-list">
+                                <li>A: Glutenhaltiges Getreide</li>
+                                <li>B: Krebstiere</li>
+                                <li>C: Eier</li>
+                                <li>D: Fisch</li>
+                                <li>E: Erdnüsse</li>
+                                <li>F: Soja</li>
+                                <li>G: Milch / Milchprodukt (inklusive Laktose)</li>
+                                <li>H: Schalenfrüchte, Kerne</li>
+                                <li>L: Sellerie</li>
+                                <li>M: Senf</li>
+                                <li>N: Sesam</li>
+                                <li>O: Schwefeldioxid &amp; Sulfite</li>
+                                <li>P: Lupinen</li>
+                                <li>R: Weichtiere</li>
+                            </ul>
+                        </div>
+                        <div class="menu-allergen-col">
+                            <div class="menu-allergen-col-header">Zusatzstoffe</div>
+                            <ul class="menu-allergen-list">
+                                <li>1. Koffeinhaltig</li>
+                                <li>2. Mit Antioxidationsmitteln</li>
+                                <li>3. Mit Farbstoffen</li>
+                                <li>4. Säurungsmittel</li>
+                                <li>5. Konservierungstoffe</li>
+                                <li>6. Mit Süßstoffen</li>
+                                <li>7. Chininhaltig</li>
+                                <li>8. Stabilisatoren</li>
+                                <li>-</li>
+                                <li>-</li>
+                                <li>-</li>
+                                <li>-</li>
+                                <li>-</li>
+                                <li>-</li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <p>Gerichte können Glutamat enthalten, auf Wunsch kann jedes Gericht auch glutamatfrei zubereitet werden.</p>
-                    <p>Ausführliche Zusatzstoffe &amp; Allergene fragen Sie bitte das Ladenpersonal.</p>
+                    <div class="menu-allergen-footer">
+                        <p>- Gerichte können Glutamat enthalten, auf Wunsch kann jedes Gerichte auch glutamatfrei zubereitet werden.</p>
+                        <p>- Allergene sowie Zusatzstoffe können beim Personal für genaueres nachgefragt werden.</p>
+                    </div>
                 </aside>
 
             </div>
