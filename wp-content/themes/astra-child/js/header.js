@@ -726,15 +726,21 @@ document.addEventListener('DOMContentLoaded', function () {
         anchor.addEventListener('click', function (e) {
             if (this.getAttribute('href') === '#') return;
             const targetId = this.getAttribute('href');
+            let decodedId = '';
+            try {
+                decodedId = decodeURIComponent(targetId).toLowerCase();
+            } catch (e) {
+                decodedId = targetId.toLowerCase();
+            }
             let targetElement = null;
 
             try {
                 targetElement = document.querySelector(targetId);
             } catch (err) { }
 
-            // Fallback: If #about-us is not found, check other common IDs or text content
-            if (!targetElement && targetId === '#about-us') {
-                targetElement = document.getElementById('uber-uns') || document.getElementById('ueber-uns') || document.getElementById('über-uns');
+            // Fallback: If the target isn't found, try to locate the Über uns section manually
+            if (!targetElement && (decodedId === '#about-us' || decodedId === '#über-uns' || decodedId === '#uber-uns' || decodedId === '#ueber-uns')) {
+                targetElement = document.getElementById('uber-uns') || document.getElementById('ueber-uns') || document.getElementById('über-uns') || document.getElementById('Über-uns');
 
                 // Extreme fallback: find section by heading text
                 if (!targetElement) {
@@ -749,8 +755,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // Always prevent default for #about-us so the URL doesn't change if target is missing
-            if (targetId === '#about-us' || targetElement) {
+            // Always prevent default for our target so the URL doesn't change incorrectly if target is missing
+            if (decodedId === '#about-us' || decodedId === '#über-uns' || decodedId === '#uber-uns' || targetElement) {
                 e.preventDefault();
             }
 

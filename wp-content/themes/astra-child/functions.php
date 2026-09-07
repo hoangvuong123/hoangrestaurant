@@ -273,7 +273,7 @@ function get_hoang_landing_page_menu( $ul_class = 'lumy-nav-primary' ) {
     ob_start();
     ?>
     <ul class="<?php echo esc_attr($ul_class); ?> lumy-landing-nav">
-      <li><a href="#about-us">Über uns</a></li>
+      <li><a href="#Über-uns">Über uns</a></li>
       <li><a href="#menu-allergen-note-title">Allergene & Zusatzstoffe</a></li>
       <li class="menu-item-has-children"><a href="#speisekarte">Speisekarte <svg style="vertical-align: middle; margin-left: 2px;" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
         <ul class="sub-menu">
