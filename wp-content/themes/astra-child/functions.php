@@ -306,3 +306,14 @@ add_filter( 'the_content', function( $content ) {
     }
     return $content;
 });
+
+add_action('init', function() {
+    if (!get_option('hx_auto_deleted_old_pages')) {
+        $slugs = ['our-menu', 'contact', 'about-us', 'ueber-uns', 'about'];
+        foreach ($slugs as $slug) {
+            $p = get_page_by_path($slug);
+            if ($p) wp_delete_post($p->ID, true);
+        }
+        update_option('hx_auto_deleted_old_pages', 1);
+    }
+});
