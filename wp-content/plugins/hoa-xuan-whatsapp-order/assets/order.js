@@ -65,6 +65,7 @@
       missingPhone: "Please configure the WhatsApp number first.",
       added: "Added to your order",
       updated: "Item updated",
+      noImage: "No Image",
     }
     : {
       add: "Bestellen",
@@ -89,6 +90,7 @@
       missingPhone: "Bitte zuerst die WhatsApp-Nummer konfigurieren.",
       added: "Zur Bestellung hinzugefügt",
       updated: "Gericht aktualisiert",
+      noImage: "Kein Bild",
     };
 
   const euro = new Intl.NumberFormat("de-DE", {
@@ -216,16 +218,16 @@
 
   document.body.insertAdjacentHTML(
     "beforeend",
-    `<button class="hx-cart-trigger" type="button" title="${escapeHtml(text.cart)}" aria-label="${escapeHtml(text.cart)}">
+    `<button class="hx-cart-trigger" type="button" title="${escapeHtml(text.cart)}" aria-label="${escapeHtml(text.cart)}" data-no-translation>
       <span class="dashicons dashicons-cart" aria-hidden="true"></span>
       <span class="hx-cart-count">0</span>
     </button>
-    <div class="hx-order-toast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="hx-order-toast" role="status" aria-live="polite" aria-atomic="true" data-no-translation>
       <span class="dashicons dashicons-yes-alt" aria-hidden="true"></span>
       <span><strong class="hx-order-toast__title"></strong><span class="hx-order-toast__message"></span></span>
     </div>
-    <div class="hx-order-overlay" hidden></div>
-    <aside class="hx-cart-drawer" aria-hidden="true" aria-label="${escapeHtml(text.cart)}">
+    <div class="hx-order-overlay" data-no-translation hidden></div>
+    <aside class="hx-cart-drawer" aria-hidden="true" aria-label="${escapeHtml(text.cart)}" data-no-translation>
       <header class="hx-panel-header">
         <h2>${escapeHtml(text.cart)}</h2>
         <button class="hx-icon-button hx-close-cart" type="button" title="${escapeHtml(text.close)}" aria-label="${escapeHtml(text.close)}"><span class="dashicons dashicons-no-alt" aria-hidden="true"></span></button>
@@ -244,7 +246,7 @@
         <button class="hx-whatsapp-button" type="button"><span class="dashicons dashicons-format-chat" aria-hidden="true"></span>${escapeHtml(text.whatsapp)}</button>
       </footer>
     </aside>
-    <div class="hx-product-modal" role="dialog" aria-modal="true" aria-labelledby="hx-product-modal-title" hidden>
+    <div class="hx-product-modal" role="dialog" aria-modal="true" aria-labelledby="hx-product-modal-title" data-no-translation hidden>
       <div class="hx-product-modal__panel">
         <header class="hx-panel-header">
           <h2 id="hx-product-modal-title" tabindex="-1"></h2>
@@ -274,7 +276,9 @@
           <button class="hx-note-toggle hx-modal-note-toggle" type="button" aria-expanded="false"><span class="dashicons dashicons-edit-page" aria-hidden="true"></span><span>${escapeHtml(text.addNote)}</span></button>
           <label class="hx-note-field" hidden><span>${escapeHtml(text.note)}</span><textarea name="note" rows="3" maxlength="300"></textarea></label>
           <p class="hx-form-error" role="alert" hidden></p>
-          <button class="hx-modal-submit" type="submit">${escapeHtml(text.addToCart)}</button>
+          <div class="hx-modal-submit-wrap">
+            <button class="hx-modal-submit" type="submit">${escapeHtml(text.addToCart)}</button>
+          </div>
           </form>
         </div>
       </div>
@@ -344,11 +348,13 @@
     const imgWrapper = modal.querySelector(".hx-modal-image-wrapper");
     if (imgWrapper && modalProduct) {
       const hasAnyImage = !!modalProduct.image || (modalProduct.choices && modalProduct.choices.some(c => c.image));
+      modal.classList.toggle("hx-no-image-mode", !hasAnyImage);
       const imgEl = imgWrapper.querySelector(".hx-modal-image");
       const imgToUse = choice?.image || modalProduct.image || "";
 
       if (hasAnyImage) {
         imgWrapper.hidden = false;
+        imgWrapper.setAttribute("data-no-image", text.noImage);
         if (imgToUse) {
           imgWrapper.classList.remove("hx-no-image-placeholder");
           imgWrapper.classList.add("hx-image-loading");
