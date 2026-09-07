@@ -30,7 +30,7 @@ function astra_child_enqueue_styles() {
     }
     
     // our-menu css
-    if ( is_page( 'our-menu' ) ) {
+    if ( is_page( 'our-menu' ) || is_front_page() ) {
         wp_enqueue_style(
             'our-menu-css',
             get_stylesheet_directory_uri() . '/css/our-menu.css',
@@ -77,7 +77,7 @@ function astra_child_enqueue_scripts() {
     }
     
      // our-menu js
-    if ( is_page( 'our-menu' ) ) {
+    if ( is_page( 'our-menu' ) || is_front_page() ) {
         wp_enqueue_script(
             'our-menu-js',
             get_stylesheet_directory_uri() . '/js/our-menu.js',
