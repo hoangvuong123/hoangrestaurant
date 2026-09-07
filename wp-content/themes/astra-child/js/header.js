@@ -726,7 +726,25 @@ document.addEventListener('DOMContentLoaded', function () {
         anchor.addEventListener('click', function (e) {
             if (this.getAttribute('href') === '#') return;
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+            let targetElement = null;
+
+            try {
+                targetElement = document.querySelector(targetId);
+            } catch (err) { }
+
+            // Fallback: If #about-us is not found, check other common IDs or text content
+            if (!targetElement && targetId === '#about-us') {
+                targetElement = document.getElementById('uber-uns') || document.getElementById('ueber-uns') || document.getElementById('über-uns');
+
+                // Extreme fallback: find section by heading text
+                if (!targetElement) {
+                    const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, span, p'));
+                    const heading = headings.find(el => el.textContent.trim().toLowerCase() === 'über uns' || el.textContent.trim().toLowerCase() === 'hoang restaurant');
+                    if (heading) {
+                        targetElement = heading.closest('section') || heading.closest('.wp-block-group') || heading.parentElement;
+                    }
+                }
+            }
 
             if (targetElement) {
                 e.preventDefault();
