@@ -42,18 +42,10 @@
   </nav>
 
   <!-- Right: Lang + Order + Hamburger -->
-  <div class="lumy-hd-right">
-    <div class="lumy-lang">
-        <?php echo do_shortcode('[language-switcher]'); ?>
+    <!-- Right: Order / Desktop Icons -->
+    <div class="lumy-hd-right">
+        <!-- Optional extra icons can go here -->
     </div>
-    <button class="lumy-hbg" id="lumy-hbg-desktop" aria-label="Open full menu" aria-expanded="false">
-      <div class="lumy-hbg-lines">
-        <span></span><span></span><span></span>
-      </div>
-      <span class="lumy-hbg-label">MENU</span>
-    </button>
-
-  </div>
 </header>
 
 <!-- ══════════════════════════════════
@@ -100,9 +92,7 @@
         ]); ?>
     <?php endif; ?>
 
-    <div class="lumy-lang">
-        <?php echo do_shortcode('[language-switcher]'); ?>
-    </div>
+    <!-- Desktop Overlay content has no language switcher anymore -->
   </div>
 </div>
 
@@ -129,9 +119,6 @@
     </div>
 
     <div class="lumy-hm-right">
-        <div class="lumy-lang">
-           <?php echo do_shortcode('[language-switcher]'); ?>
-        </div>
       <button class="lumy-hbg" id="lumy-hbg-mobile" aria-label="Open menu" aria-expanded="false">
         <div class="lumy-hbg-lines">
           <span></span><span></span><span></span>
