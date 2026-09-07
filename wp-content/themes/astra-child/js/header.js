@@ -738,16 +738,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Extreme fallback: find section by heading text
                 if (!targetElement) {
-                    const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, span, p'));
-                    const heading = headings.find(el => el.textContent.trim().toLowerCase() === 'über uns' || el.textContent.trim().toLowerCase() === 'hoang restaurant');
+                    const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, span, p, div'));
+                    const heading = headings.find(el => {
+                        const txt = el.textContent.toLowerCase();
+                        return txt.includes('über uns') || txt.includes('hoang restaurant') || txt.includes('uber uns');
+                    });
                     if (heading) {
                         targetElement = heading.closest('section') || heading.closest('.wp-block-group') || heading.parentElement;
                     }
                 }
             }
 
-            if (targetElement) {
+            // Always prevent default for #about-us so the URL doesn't change if target is missing
+            if (targetId === '#about-us' || targetElement) {
                 e.preventDefault();
+            }
+
+            if (targetElement) {
 
                 // Close menus if open
                 const overlay = document.getElementById('lumy-overlay');

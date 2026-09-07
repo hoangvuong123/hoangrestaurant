@@ -92,7 +92,7 @@ function astra_child_enqueue_scripts() {
         'header-js',
         get_stylesheet_directory_uri() . '/js/header.js',
         array(),
-        '1.0',
+        filemtime( get_stylesheet_directory() . '/js/header.js' ),
         true
     );
 
