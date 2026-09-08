@@ -158,10 +158,10 @@ add_action('init', function() {
    Floating Phone Action Button
 ======================================= */
 if ( ! defined( 'DA_PHONE_DISPLAY' ) ) {
-    define( 'DA_PHONE_DISPLAY', '0176 21927505' );
+    define( 'DA_PHONE_DISPLAY', '0152 37772486' );
 }
 if ( ! defined( 'DA_PHONE_LINK' ) ) {
-    define( 'DA_PHONE_LINK', 'tel:017621927505' );
+    define( 'DA_PHONE_LINK', 'tel:015237772486' );
 }
 
 function hx_render_floating_phone_button() {
