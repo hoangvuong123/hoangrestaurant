@@ -1,5 +1,6 @@
 <?php
 
+
 /* =========================
 Load CSS
 ========================= */
@@ -298,14 +299,6 @@ function get_hoang_landing_page_menu( $ul_class = 'lumy-nav-primary' ) {
     return ob_get_clean();
 }
 
-add_filter( 'the_content', function( $content ) {
-    // Inject the restaurant menu out to the main page automatically
-    if ( is_front_page() && in_the_loop() && is_main_query() ) {
-        $menu_shortcode = do_shortcode('[restaurant_menu]');
-        return $content . $menu_shortcode;
-    }
-    return $content;
-});
 
 add_action('init', function() {
     if (!get_option('hx_auto_deleted_old_pages')) {

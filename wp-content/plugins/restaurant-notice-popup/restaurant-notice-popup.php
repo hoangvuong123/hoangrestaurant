@@ -66,56 +66,51 @@ function rnp_get_settings() {
 }
 
 function rnp_sanitize_settings( $input ) {
-    $log_file = WP_CONTENT_DIR . '/debug-popup.log';
-    try {
-        if ( ! is_array( $input ) ) {
-            $input = [];
-        }
+    if ( ! is_array( $input ) ) {
+        $input = [];
+    }
 
-        $clean = rnp_default_settings();
+    $clean = rnp_default_settings();
 
-        $clean['order_notice_enabled']   = empty( $input['order_notice_enabled'] ) ? '0' : '1';
-        $clean['new_dishes_enabled']     = empty( $input['new_dishes_enabled'] ) ? '0' : '1';
-        $clean['closure_notice_enabled'] = empty( $input['closure_notice_enabled'] ) ? '0' : '1';
+    // Booleans logic
+    $clean['order_notice_enabled']   = empty( $input['order_notice_enabled'] ) ? '0' : '1';
+    $clean['new_dishes_enabled']     = empty( $input['new_dishes_enabled'] ) ? '0' : '1';
+    $clean['closure_notice_enabled'] = empty( $input['closure_notice_enabled'] ) ? '0' : '1';
 
-        $clean['popup_icon_svg'] = isset( $input['popup_icon_svg'] ) ? wp_unslash( $input['popup_icon_svg'] ) : $clean['popup_icon_svg'];
-        $clean['popup_title_de'] = isset( $input['popup_title_de'] ) ? sanitize_text_field( wp_unslash( $input['popup_title_de'] ) ) : $clean['popup_title_de'];
-        $clean['popup_title_en'] = isset( $input['popup_title_en'] ) ? sanitize_text_field( wp_unslash( $input['popup_title_en'] ) ) : $clean['popup_title_en'];
+    // Text & HTML
+    $clean['popup_icon_svg'] = isset( $input['popup_icon_svg'] ) && is_scalar( $input['popup_icon_svg'] ) ? wp_unslash( (string) $input['popup_icon_svg'] ) : $clean['popup_icon_svg'];
+    
+    $clean['popup_title_de'] = isset( $input['popup_title_de'] ) && is_scalar( $input['popup_title_de'] ) ? sanitize_text_field( wp_unslash( (string) $input['popup_title_de'] ) ) : $clean['popup_title_de'];
+    $clean['popup_title_en'] = isset( $input['popup_title_en'] ) && is_scalar( $input['popup_title_en'] ) ? sanitize_text_field( wp_unslash( (string) $input['popup_title_en'] ) ) : $clean['popup_title_en'];
 
-        $clean['order_text_takeaway_de'] = isset( $input['order_text_takeaway_de'] ) ? wp_kses_post( wp_unslash( $input['order_text_takeaway_de'] ) ) : $clean['order_text_takeaway_de'];
-        $clean['order_text_takeaway_en'] = isset( $input['order_text_takeaway_en'] ) ? wp_kses_post( wp_unslash( $input['order_text_takeaway_en'] ) ) : $clean['order_text_takeaway_en'];
-        
-        $clean['order_phone_display'] = isset( $input['order_phone_display'] ) ? sanitize_text_field( wp_unslash( $input['order_phone_display'] ) ) : $clean['order_phone_display'];
-        $clean['order_phone_link']    = isset( $input['order_phone_link'] ) ? sanitize_text_field( wp_unslash( $input['order_phone_link'] ) ) : $clean['order_phone_link'];
-        $clean['order_whatsapp_link'] = isset( $input['order_whatsapp_link'] ) ? esc_url_raw( wp_unslash( $input['order_whatsapp_link'] ) ) : $clean['order_whatsapp_link'];
+    $clean['order_text_takeaway_de'] = isset( $input['order_text_takeaway_de'] ) && is_scalar( $input['order_text_takeaway_de'] ) ? wp_kses_post( wp_unslash( (string) $input['order_text_takeaway_de'] ) ) : $clean['order_text_takeaway_de'];
+    $clean['order_text_takeaway_en'] = isset( $input['order_text_takeaway_en'] ) && is_scalar( $input['order_text_takeaway_en'] ) ? wp_kses_post( wp_unslash( (string) $input['order_text_takeaway_en'] ) ) : $clean['order_text_takeaway_en'];
 
-        $clean['order_text_delivery_de'] = isset( $input['order_text_delivery_de'] ) ? wp_kses_post( wp_unslash( $input['order_text_delivery_de'] ) ) : $clean['order_text_delivery_de'];
-        $clean['order_text_delivery_en'] = isset( $input['order_text_delivery_en'] ) ? wp_kses_post( wp_unslash( $input['order_text_delivery_en'] ) ) : $clean['order_text_delivery_en'];
+    $clean['order_phone_display'] = isset( $input['order_phone_display'] ) && is_scalar( $input['order_phone_display'] ) ? sanitize_text_field( wp_unslash( (string) $input['order_phone_display'] ) ) : $clean['order_phone_display'];
+    $clean['order_phone_link']    = isset( $input['order_phone_link'] ) && is_scalar( $input['order_phone_link'] ) ? sanitize_text_field( wp_unslash( (string) $input['order_phone_link'] ) ) : $clean['order_phone_link'];
+    $clean['order_whatsapp_link'] = isset( $input['order_whatsapp_link'] ) && is_scalar( $input['order_whatsapp_link'] ) ? esc_url_raw( wp_unslash( (string) $input['order_whatsapp_link'] ) ) : $clean['order_whatsapp_link'];
 
-        $text_de = isset( $input['closure_text_de'] ) && is_scalar( $input['closure_text_de'] ) ? (string) $input['closure_text_de'] : '';
-        $text_en = isset( $input['closure_text_en'] ) && is_scalar( $input['closure_text_en'] ) ? (string) $input['closure_text_en'] : '';
+    $clean['order_text_delivery_de'] = isset( $input['order_text_delivery_de'] ) && is_scalar( $input['order_text_delivery_de'] ) ? wp_kses_post( wp_unslash( (string) $input['order_text_delivery_de'] ) ) : $clean['order_text_delivery_de'];
+    $clean['order_text_delivery_en'] = isset( $input['order_text_delivery_en'] ) && is_scalar( $input['order_text_delivery_en'] ) ? wp_kses_post( wp_unslash( (string) $input['order_text_delivery_en'] ) ) : $clean['order_text_delivery_en'];
 
-        $clean['closure_text_de'] = wp_kses_post( wp_unslash( $text_de ) );
-        $clean['closure_text_en'] = wp_kses_post( wp_unslash( $text_en ) );
+    $text_de = isset( $input['closure_text_de'] ) && is_scalar( $input['closure_text_de'] ) ? (string) $input['closure_text_de'] : '';
+    $text_en = isset( $input['closure_text_en'] ) && is_scalar( $input['closure_text_en'] ) ? (string) $input['closure_text_en'] : '';
+    $clean['closure_text_de'] = wp_kses_post( wp_unslash( $text_de ) );
+    $clean['closure_text_en'] = wp_kses_post( wp_unslash( $text_en ) );
 
-        $dish_ids = [];
-        if ( isset( $input['new_dish_ids'] ) && is_array( $input['new_dish_ids'] ) ) {
-            foreach ( $input['new_dish_ids'] as $id ) {
-                $abs_id = absint( $id );
-                if ( $abs_id > 0 && ! in_array( $abs_id, $dish_ids, true ) ) {
-                    $dish_ids[] = $abs_id;
-                }
+    // Arrays
+    $dish_ids = [];
+    if ( ! empty( $input['new_dish_ids'] ) && is_array( $input['new_dish_ids'] ) ) {
+        foreach ( $input['new_dish_ids'] as $id ) {
+            $abs_id = absint( $id );
+            if ( $abs_id > 0 && ! in_array( $abs_id, $dish_ids, true ) ) {
+                $dish_ids[] = $abs_id;
             }
         }
-        $clean['new_dish_ids'] = $dish_ids;
-
-        @file_put_contents( $log_file, date('[Y-m-d H:i:s]') . ' rnp_sanitize_settings: OK' . PHP_EOL, FILE_APPEND );
-        return $clean;
-
-    } catch ( \Throwable $e ) {
-        @file_put_contents( $log_file, date('[Y-m-d H:i:s]') . ' EXCEPTION: ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine() . PHP_EOL, FILE_APPEND );
-        return rnp_default_settings();
     }
+    $clean['new_dish_ids'] = $dish_ids;
+
+    return $clean;
 }
 
 function rnp_register_settings() {
