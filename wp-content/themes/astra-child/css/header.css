@@ -940,6 +940,11 @@ body.lumy-menu-open {
   transition: all 0.3s ease;
   letter-spacing: 1px;
 }
+.lumy-nav-primary .sub-menu a:focus,
+.lumy-nav-primary .sub-menu a:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 .lumy-nav-primary .sub-menu a::after {
   display: none;
