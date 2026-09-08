@@ -124,6 +124,15 @@ body.lumy-menu-open {
   color: #FFD700;
 }
 
+.lumy-nav-primary a:focus,
+.lumy-nav-primary a:active,
+.lumy-mob-nav a:focus,
+.lumy-mob-nav a:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
 /* Right cluster */
 .lumy-hd-right {
   display: flex;
@@ -940,6 +949,7 @@ body.lumy-menu-open {
   transition: all 0.3s ease;
   letter-spacing: 1px;
 }
+
 .lumy-nav-primary .sub-menu a:focus,
 .lumy-nav-primary .sub-menu a:active {
   outline: none !important;
